@@ -41,6 +41,9 @@ module.exports = function override(config, env) {
                 },
                 {
                     loader: require.resolve('less-loader'),
+                    // options: {
+                    //     modifyVars: { "@brand-primary": "#1DA57A" },
+                    // },
                 },
             ]
         }
