@@ -55,6 +55,20 @@ Router.post('/login', (req, res) => {
     })
 })
 
+Router.post('/update',(req,res)=>{
+    const {userid} = req.cookies
+    if(!userid){
+        return res.json({code:1})
+    }
+    const body = req.body
+    User.findByIdAndUpdate(userid,body).then(doc=>{
+        const data = Object.assign({},{user:doc.user,type:doc.type},body)
+        res.json({code:0,data})
+    }).catch(err=>{
+        res.json({code:1,msg:'server error'})
+    })
+})
+
 function md5Pwd(pwd) {
     const salt = 'imooc_is_good_39823x8yz@~~@'
     return utils.md5(utils.md5(pwd + salt))
