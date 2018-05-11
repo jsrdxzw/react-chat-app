@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from "../../components/logo/logo"
 import {List,Button,InputItem,Radio,WingBlank} from 'antd-mobile'
+import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {register} from '../../store/reducer/user'
 
@@ -29,9 +30,10 @@ class Register extends React.PureComponent {
     }
 
     render() {
-        const {msg} = this.props.user
+        const {msg,redirectTo} = this.props.user
         return (
             <div>
+                {redirectTo?<Redirect to={redirectTo}/>:null}
                 <Logo/>
                 <h2>Register Page</h2>
                 <WingBlank>
