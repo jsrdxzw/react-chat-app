@@ -6,14 +6,12 @@ import Boss from "../boss/boss"
 import {connect} from 'react-redux'
 import Genius from "../genius/genius"
 import NavLinkBar from "../../components/navlink/navlink"
+import User from "../user/user"
 
 function MSG() {
     return <h1>msg</h1>
 }
 
-function User() {
-    return <h1>me</h1>
-}
 
 class DashBoard extends React.PureComponent {
 
