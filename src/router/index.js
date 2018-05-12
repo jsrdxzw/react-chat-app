@@ -6,6 +6,7 @@ import AuthRouter from "../components/auth-router/auth-router"
 import BossInfo from "../container/boss-info/boss-info"
 import GeniusInfo from "../container/genius-info/genius-info"
 import DashBoard from "../container/dashboard/dashboard"
+import Chat from "../container/chat/chat"
 
 
 const RootRouter = () => {
@@ -17,6 +18,7 @@ const RootRouter = () => {
                 <Route path={'/geniusinfo'} component={GeniusInfo}/>
                 <Route path={'/login'} component={Login}/>
                 <Route path={'/register'} component={Register}/>
+                <Route path={'/chat/:user'} component={Chat}/>
                 <Route component={DashBoard}/>
             </Switch>
         </div>

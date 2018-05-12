@@ -1,15 +1,20 @@
 import React from 'react'
 import {Card, WingBlank} from 'antd-mobile'
 import propTypes from 'prop-types'
+import {withRouter} from 'react-router-dom'
 
-export default class UserCard extends React.PureComponent {
+class UserCard extends React.PureComponent {
+
+    handleClick(id){
+        this.props.history.push(`/chat/${id}`)
+    }
 
     render() {
         return (
             <WingBlank>
                 {this.props.userList.map(v => (
                     v.avatar ?
-                        <Card key={v._id}>
+                        <Card key={v._id} onClick={()=>this.handleClick(v._id)}>
                             <Card.Header title={v.user}
                                          thumb={<img src={require(`../../imgs/${v.avatar}.jpeg`)} width={60}
                                                      height={60} alt=""/>}
@@ -26,6 +31,8 @@ export default class UserCard extends React.PureComponent {
         )
     }
 }
+
+export default withRouter(UserCard)
 
 UserCard.propTypes = {
     userList:propTypes.array.isRequired

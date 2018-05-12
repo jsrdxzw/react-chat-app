@@ -4,6 +4,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const userRouter = require('./user')
 const app = express()
+const server = require('http').Server(app)
+const io = require('socket.io')(server)
 
 app.use(cookieParser())
 app.use(bodyParser.json())

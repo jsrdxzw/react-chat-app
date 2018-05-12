@@ -4,29 +4,23 @@ import {List,Button,InputItem,Radio,WingBlank} from 'antd-mobile'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {register} from '../../store/reducer/user'
+import ImoocForm from '../../components/imooc-form/imooc-form'
 
 const RadioItem = Radio.RadioItem
 
 class Register extends React.PureComponent {
     constructor(props) {
         super(props)
-        this.state = {
-            user:'',
-            pwd:'',
-            repeatpwd:'',
-            type:'genius'
-        }
         this.handleRegister = this.handleRegister.bind(this)
     }
 
-    handleChange(key,val){
-        this.setState({
-            [key]:val
-        })
+
+    componentDidMount() {
+        this.props.handleChange('type','genius')
     }
 
     handleRegister(){
-        this.props.register(this.state)
+        this.props.register(this.props.state)
     }
 
     render() {
@@ -39,13 +33,13 @@ class Register extends React.PureComponent {
                 <WingBlank>
                     {msg?<p style={{color:'red',textAlign:'center'}}>{msg}</p>:null}
                 <List>
-                    <InputItem onChange={(v)=>this.handleChange('user',v)}>username</InputItem>
-                    <InputItem onChange={(v)=>this.handleChange('pwd',v)} type={'password'}>password</InputItem>
-                    <InputItem onChange={(v)=>this.handleChange('repeatpwd',v)} type={'password'}>confirm</InputItem>
-                    <RadioItem checked={this.state.type==='genius'} onChange={()=>this.handleChange('type','genius')}>
+                    <InputItem onChange={(v)=>this.props.handleChange('user',v)}>username</InputItem>
+                    <InputItem onChange={(v)=>this.props.handleChange('pwd',v)} type={'password'}>password</InputItem>
+                    <InputItem onChange={(v)=>this.props.handleChange('repeatpwd',v)} type={'password'}>confirm</InputItem>
+                    <RadioItem checked={this.props.state.type==='genius'} onChange={()=>this.props.handleChange('type','genius')}>
                         genius
                     </RadioItem>
-                    <RadioItem checked={this.state.type === 'boss'} onChange={()=>this.handleChange('type','boss')}>
+                    <RadioItem checked={this.props.state.type === 'boss'} onChange={()=>this.props.handleChange('type','boss')}>
                         boss
                     </RadioItem>
                 </List>
@@ -67,4 +61,4 @@ const mapStateFromProps = (dispatch)=>{
     }
 }
 
-export default connect(mapStateToProps,mapStateFromProps)(Register)
+export default connect(mapStateToProps,mapStateFromProps)(ImoocForm(Register))

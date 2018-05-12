@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {Result,List,WhiteSpace,Button,Modal} from 'antd-mobile'
+import {Result, List, WhiteSpace, Button, Modal} from 'antd-mobile'
 import broswerCookie from 'browser-cookies'
+import {logout} from '../../store/reducer/user'
+import {Redirect} from 'react-router-dom'
 
 class User extends React.PureComponent {
     constructor(props) {
@@ -10,27 +12,37 @@ class User extends React.PureComponent {
     }
 
 
-    logout(){
+    logout() {
         const alert = Modal.alert
-        alert('logout?','are you sure to logout?',[{text:'Cancel',onPress:()=>{}},{text:'Ok',onPress:()=>{broswerCookie.erase('userid')}}])
+        alert('logout?', 'are you sure to logout?', [{
+            text: 'Cancel', onPress: () => {
+            }
+        }, {
+            text: 'Ok', onPress: () => {
+                broswerCookie.erase('userid')
+                this.props.logout()
+            }
+        }])
     }
 
     render() {
-        const {avatar,user,type,company,title,desc,money} = this.props.user
+        const {avatar, user, type, company, title, desc, money,redirectTo} = this.props.user
         return (
             <div>
+                {redirectTo&&redirectTo!==`/${type}`?<Redirect to={redirectTo}/>:null}
                 {avatar ?
-                <Result img={<img src={require(`../../imgs/${avatar}.jpeg`)} width={60} height={60} alt=""/>} title={user} message={type==='boss'?company:null}/>
-                : null}
-                <List renderHeader={()=>'profile'}>
+                    <Result img={<img src={require(`../../imgs/${avatar}.jpeg`)} width={60} height={60} alt=""/>}
+                            title={user} message={type === 'boss' ? company : null}/>
+                    : null}
+                <List renderHeader={() => 'profile'}>
                     <List.Item>
                         {title}
                         <List.Item.Brief>
                             {desc}
                         </List.Item.Brief>
-                        {money?<List.Item.Brief>
+                        {money ? <List.Item.Brief>
                             {money}
-                        </List.Item.Brief>:null}
+                        </List.Item.Brief> : null}
                     </List.Item>
                 </List>
                 <WhiteSpace/>
@@ -48,4 +60,10 @@ const mapStateToProps = state => (
     }
 )
 
-export default connect(mapStateToProps)(User)
+const mapStateFromProps = dispatch => (
+    {
+        logout:()=>dispatch(logout())
+    }
+)
+
+export default connect(mapStateToProps,mapStateFromProps)(User)
