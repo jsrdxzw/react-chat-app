@@ -3,9 +3,10 @@ import React from 'react'
 import Login from "../container/login/login"
 import Register from "../container/register/register"
 import AuthRouter from "../components/auth-router/auth-router"
-import Boss from "../container/boss/boss"
 import BossInfo from "../container/boss-info/boss-info"
 import GeniusInfo from "../container/genius-info/genius-info"
+import DashBoard from "../container/dashboard/dashboard"
+
 
 const RootRouter = () => {
     return (
@@ -16,7 +17,7 @@ const RootRouter = () => {
                 <Route path={'/geniusinfo'} component={GeniusInfo}/>
                 <Route path={'/login'} component={Login}/>
                 <Route path={'/register'} component={Register}/>
-                <Route path={'/boss'} component={Boss}/>
+                <Route component={DashBoard}/>
             </Switch>
         </div>
     )

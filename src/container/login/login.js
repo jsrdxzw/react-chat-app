@@ -1,6 +1,5 @@
 import React from 'react'
 import Logo from "../../components/logo/logo"
-import styles from './login.css'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {login} from '../../store/reducer/user'
@@ -38,7 +37,7 @@ class Login extends React.PureComponent {
             <div>
                 {redirectTo?<Redirect to={redirectTo}/>:null}
                 <Logo/>
-                <h2>Login Page</h2>
+                <h2 style={{textAlign:'center',color:'#aaa'}}>Login Page</h2>
                 {msg?<p style={{color:'red',textAlign:'center'}}>{msg}</p>:null}
                 <WingBlank>
                     <WhiteSpace/>

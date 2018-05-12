@@ -35,7 +35,7 @@ class Register extends React.PureComponent {
             <div>
                 {redirectTo?<Redirect to={redirectTo}/>:null}
                 <Logo/>
-                <h2>Register Page</h2>
+                <h2 style={{textAlign:'center',color:'#aaa'}}>Register Page</h2>
                 <WingBlank>
                     {msg?<p style={{color:'red',textAlign:'center'}}>{msg}</p>:null}
                 <List>

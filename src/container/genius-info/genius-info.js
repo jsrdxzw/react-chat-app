@@ -39,7 +39,7 @@ class GeniusInfo extends React.PureComponent {
             <div>
                 {redirectTo?<Redirect to={redirectTo}/>:null}
                 <NavBar mode={'dark'}>Genius Information</NavBar>
-                <AvatarSelector selectAvatart={this.selectAvatar}/>
+                <AvatarSelector selectAvatar={this.selectAvatar}/>
                 <WhiteSpace/>
                 <List>
                     <InputItem onChange={(val)=>this.handleChange('title',val)}>Find Job</InputItem>

@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import {get_user_list} from '../../store/reducer/chater'
 import UserCard from "../../components/user-card/user-card"
 
-class Boss extends React.PureComponent {
+class Genius extends React.PureComponent {
 
     componentDidMount() {
-        this.props.get_user_list('genius')
+        this.props.get_user_list('boss')
     }
 
     render() {
@@ -24,4 +24,5 @@ const mapStateFromProps = dispatch => ({
     get_user_list: (type) => dispatch(get_user_list(type))
 })
 
-export default connect(mapStateToProps, mapStateFromProps)(Boss)
+export default connect(mapStateToProps, mapStateFromProps)(Genius)
+
